@@ -1,3 +1,29 @@
+const resultContainer = document.querySelector('#resultDiv');
+const playButton = document.querySelector('#play');
+
+let getHumanChoice = "Rock";
+
+let rock = document.createElement('button');
+rock.innerText = 'Rock'
+rock.setAttribute('id', 'rock');
+rock.addEventListener('click', () => {
+    getHumanChoice = "Rock"
+})
+
+let paper = document.createElement('button');
+paper.innerText = 'Paper'
+paper.setAttribute('id', 'paper');
+paper.addEventListener('click', () => {
+    getHumanChoice = "Paper"
+})
+
+let scissor = document.createElement('button');
+scissor.innerText = 'Scissor'
+scissor.setAttribute('id', 'scissor');
+scissor.addEventListener('click', () => {
+    getHumanChoice = "Scissor"
+})
+
 function getComputerChoice() {
 
     randomNum = Math.floor(Math.random() * 3);
@@ -9,17 +35,17 @@ function getComputerChoice() {
     return "Scissor"
 };
 
-function getHumanChoice() {
-    choiceNum = parseInt(prompt("Choose 0 for Rock, 1 for Paper, and 2 for Scissor!!", "Choose Carefully!!"));
-    if(choiceNum === 0) {
-        return "Rock"
-    } else if (choiceNum === 1) {
-        return "Paper"
-    } else if (choiceNum === 2) {
-        return "Scissor"
-    }
-    return "Invalid Input" 
-}
+// function getHumanChoice() {
+//     choiceNum = parseInt(prompt("Choose 0 for Rock, 1 for Paper, and 2 for Scissor!!", "Choose Carefully!!"));
+//     if(choiceNum === 0) {
+//         return "Rock"
+//     } else if (choiceNum === 1) {
+//         return "Paper"
+//     } else if (choiceNum === 2) {
+//         return "Scissor"
+//     }
+//     return "Invalid Input" 
+// }
 
 
 function playRound(getComputerChoice, getHumanChoice) {
@@ -54,12 +80,12 @@ function playRound(getComputerChoice, getHumanChoice) {
     return winner
 } 
 
-function playGame() {
+function playGame(rounds) {
     let humanScore = 0;
     let computerScore = 0;  
 
-    for (let step = 0; step < 5; step++) {
-        let score = playRound(getComputerChoice(), getHumanChoice());
+    for (let step = 0; step < rounds; step++) {
+        let score = playRound(getComputerChoice(), getHumanChoice);
         if (score === 0){
             computerScore += 1;
         } else if (score === 1) {
@@ -77,4 +103,35 @@ function playGame() {
     }
 }
 
-playGame()
+// playGame()
+
+function setCounter(name, score, comScore){
+    yourScore = document.createElement("h4");
+    yourScore.innerText = `${name}: ${score}`
+    computerScore = document.createElement('h4');
+    computerScore.innerText = `Computer: ${comScore}`
+    resultContainer.appendChild(yourScore);
+    resultContainer.appendChild(computerScore);
+}
+
+function threeButtons(){
+
+    resultContainer.appendChild(rock);
+    resultContainer.appendChild(paper);
+    resultContainer.appendChild(scissor);
+}
+
+function play() {
+    naam = prompt("Whats Your Name?")
+    rounds = parseInt(prompt("How many rounds do you wanna play?"))
+    playButton.remove();
+    threeButtons();
+    playGame(rounds)
+    // setCounter(naam,rounds, 2);
+
+
+}
+
+// DOM
+
+playButton.addEventListener("click",play);
