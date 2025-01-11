@@ -1,5 +1,7 @@
 const resultContainer = document.querySelector('#resultDiv');
 const playButton = document.querySelector('#play');
+const resultPanel = document.createElement('p');
+
 
 let yourScore = document.createElement("h4");
 let computer = document.createElement('h4');
@@ -83,29 +85,46 @@ function getComputerChoice() {
 function playRound(getComputerChoice, getHumanChoice) {
     let winner ;
     if (getComputerChoice === "Rock" && getHumanChoice === "Scissor") {
-        console.log( "You Lose, Rock beats Scissor");
+        resultPanel.innerText = "You Lose, Rock beats Scissor";
+        resultContainer.appendChild(resultPanel);
         winner = 0;
     } else if (getComputerChoice === "Rock" && getHumanChoice === "Paper") {
-        console.log( "You Win, Paper beats Rock");
+        // console.log( "You Win, Paper beats Rock");
+        resultPanel.innerText = "You Win, Paper beats Rock";
+        resultContainer.appendChild(resultPanel);
         winner = 1;
     } else if (getComputerChoice === "Paper" && getHumanChoice === "Scissor") {
-        console.log( "You Win,Scissor beats Paper");
+        // console.log( "You Win,Scissor beats Paper");
+        resultPanel.innerText =  "You Win,Scissor beats Paper";
+        resultContainer.appendChild(resultPanel);
         winner = 1;
     } else if (getComputerChoice === "Paper" && getHumanChoice === "Rock") {
-        console.log("You Lose, Paper beats Rock");
+        // console.log("You Lose, Paper beats Rock");
+        resultPanel.innerText = "You Lose, Paper beats Rock";
+        resultContainer.appendChild(resultPanel);
         winner = 0;
     } else if (getComputerChoice === "Scissor" && getHumanChoice === "Rock") {
-        console.log( "You Lose, Rock beats Scissor");
-        winner = 0;
+        // console.log( "You Win, Rock beats Scissor");
+        resultPanel.innerText = "You Win, Rock beats Scissor";
+        resultContainer.appendChild(resultPanel);
+        winner = 1;
     } else if (getComputerChoice === "Scissor" && getHumanChoice === "Paper") {
-        console.log( "You Lose,Scissor beats Paper");
+        // console.log( "You Lose,Scissor beats Paper");
+        resultPanel.innerText = "You Lose,Scissor beats Paper";
+        resultContainer.appendChild(resultPanel);
         winner = 0;
     } else if (getComputerChoice === "Rock" && getHumanChoice === "Rock") {
-        console.log( "This is a Draw")
+        // console.log( "This is a Draw")
+        resultPanel.innerText = "This is a Draw";
+        resultContainer.appendChild(resultPanel);
     } else if (getComputerChoice === "Scissor" && getHumanChoice === "Scissor") {
-        console.log("This is a Draw")
+        // console.log("This is a Draw")
+        resultPanel.innerText = "This is a Draw";
+        resultContainer.appendChild(resultPanel);
     } else if (getComputerChoice === "Paper" && getHumanChoice === "Paper") {
-        console.log( "This is a Draw")
+        // console.log( "This is a Draw")
+        resultPanel.innerText = "This is a Draw";
+        resultContainer.appendChild(resultPanel);
     } else {
         return "Something Went Wrong";
     }
@@ -142,8 +161,16 @@ function setCounter(name, score, comScore){
     yourScore.innerText = `${name}: ${score}`
     // computer = document.createElement('h4');
     computer.innerText = `Computer: ${comScore}`
+
+    let scoreHead = document.createElement('h2');
+    scoreHead.innerText = "Scores:"
+    resultContainer.appendChild(scoreHead);
     resultContainer.appendChild(yourScore);
     resultContainer.appendChild(computer);
+
+    const resultHead = document.createElement("h2");
+    resultHead.innerText = "Result Panel!!"
+    resultContainer.appendChild(resultHead);
 }
 
 function threeButtons(){
