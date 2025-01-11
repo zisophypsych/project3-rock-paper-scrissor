@@ -1,13 +1,27 @@
 const resultContainer = document.querySelector('#resultDiv');
 const playButton = document.querySelector('#play');
 
-let getHumanChoice = "Rock";
+let yourScore = document.createElement("h4");
+let computer = document.createElement('h4');
+
+let getHumanChoice;
+let humanScore = 0;
+let computerScore = 0; 
 
 let rock = document.createElement('button');
 rock.innerText = 'Rock'
 rock.setAttribute('id', 'rock');
 rock.addEventListener('click', () => {
     getHumanChoice = "Rock"
+    let score = playRound(getComputerChoice(), getHumanChoice);
+        if (score === 0){
+            computerScore += 1;
+            computer.innerText = `Computer: ${computerScore}`;
+        } else if (score === 1) {
+            humanScore += 1;
+            yourScore.innerText = `${naam}: ${humanScore}`;
+        }
+    
 })
 
 let paper = document.createElement('button');
@@ -15,6 +29,15 @@ paper.innerText = 'Paper'
 paper.setAttribute('id', 'paper');
 paper.addEventListener('click', () => {
     getHumanChoice = "Paper"
+    playRound(getComputerChoice(), getHumanChoice);
+    let score = playRound(getComputerChoice(), getHumanChoice);
+        if (score === 0){
+            computerScore += 1;
+            computer.innerText = `Computer: ${computerScore}`;
+        } else if (score === 1) {
+            humanScore += 1;
+            yourScore.innerText = `${naam}: ${humanScore}`;
+        }
 })
 
 let scissor = document.createElement('button');
@@ -22,6 +45,15 @@ scissor.innerText = 'Scissor'
 scissor.setAttribute('id', 'scissor');
 scissor.addEventListener('click', () => {
     getHumanChoice = "Scissor"
+    playRound(getComputerChoice(), getHumanChoice);
+    let score = playRound(getComputerChoice(), getHumanChoice);
+        if (score === 0){
+            computerScore += 1;
+            computer.innerText = `Computer: ${computerScore}`;
+        } else if (score === 1) {
+            humanScore += 1;
+            yourScore.innerText = `${naam}: ${humanScore}`;
+        }
 })
 
 function getComputerChoice() {
@@ -80,11 +112,11 @@ function playRound(getComputerChoice, getHumanChoice) {
     return winner
 } 
 
-function playGame(rounds) {
+function playGame() {
     let humanScore = 0;
     let computerScore = 0;  
 
-    for (let step = 0; step < rounds; step++) {
+    for (let step = 0; step < 1; step++) {
         let score = playRound(getComputerChoice(), getHumanChoice);
         if (score === 0){
             computerScore += 1;
@@ -106,12 +138,12 @@ function playGame(rounds) {
 // playGame()
 
 function setCounter(name, score, comScore){
-    yourScore = document.createElement("h4");
+    // yourScore = document.createElement("h4");
     yourScore.innerText = `${name}: ${score}`
-    computerScore = document.createElement('h4');
-    computerScore.innerText = `Computer: ${comScore}`
+    // computer = document.createElement('h4');
+    computer.innerText = `Computer: ${comScore}`
     resultContainer.appendChild(yourScore);
-    resultContainer.appendChild(computerScore);
+    resultContainer.appendChild(computer);
 }
 
 function threeButtons(){
@@ -123,11 +155,10 @@ function threeButtons(){
 
 function play() {
     naam = prompt("Whats Your Name?")
-    rounds = parseInt(prompt("How many rounds do you wanna play?"))
+    // rounds = parseInt(prompt("How many rounds do you wanna play?"))
     playButton.remove();
     threeButtons();
-    playGame(rounds)
-    // setCounter(naam,rounds, 2);
+    setCounter(naam,humanScore, computerScore);
 
 
 }
